@@ -19,16 +19,17 @@ def split_maps(input: list) -> list[list]:
     return full
 
 def decode_almanac_big(almanac: list[list]) -> int:
-    seed_pairs = get_seed_pairs(get_seeds(almanac[0]))
     maps = clean_maps(almanac_maps=almanac)
 
-    low = run_throug_maps(seed_pairs[0][0], maps)
+    minimum = min(get_seeds(almanac[0]))
+    maxximum = max([sum(pair) for pair in get_seed_pairs(get_seeds(almanac[0]))])
+    
+    low = run_throug_maps(minimum, maps)
 
-    for pair in tqdm(seed_pairs):
-        for x in tqdm(range(pair[0], pair[0]+pair[1])):
-            location = run_throug_maps(x, maps)
-            if location < low:
-                low = location
+    for seed in tqdm(range(minimum, maxximum)):
+        location = run_throug_maps(seed, maps)
+        if location < low:
+            low = location
     return low
 
 def decode_almanac(almanac: list[list]) -> list[int]:
@@ -82,4 +83,5 @@ if __name__ == "__main__":
     input = preprocess('day5/input.txt')
     almanac = split_maps(input=input)
     print(decode_almanac_big(almanac))
+    #I WILL COME BACK: YOU CAN SHRINK THE MAPS TOGETHER AND ITERATE OVER THE BORDERS
     
