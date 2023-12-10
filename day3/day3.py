@@ -81,7 +81,7 @@ def get_X_pos(start, i, substring) -> tuple[int, int, int]:
     return pos_X
 
 def preprocess(inputfile: str) -> list[str]:
-    """ Read in and 'clean' imput """
+    """ Read in and 'clean' input """
     with open(inputfile) as f:
         input = f.readlines()
     return [line.replace('\n', '') for line in input]

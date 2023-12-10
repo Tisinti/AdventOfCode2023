@@ -33,7 +33,7 @@ def get_big_pairs(input):
     return [res]
 
 def preprocess(inputfile: str) -> list[str]:
-    """ Read in and 'clean' imput """
+    """ Read in and 'clean' input """
     with open(inputfile) as f:
         input = f.readlines()
     return [line.replace('\n', '') for line in input]
